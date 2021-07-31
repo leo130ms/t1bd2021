@@ -9,8 +9,9 @@ const puppeteer = require('puppeteer');
 let getAPIData = async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto('https://dbis-uibk.github.io/relax/api/local/uibk/local/0?query=UiBqb2luIFMgam9pbiBU');
-  //await page.goto('https://dbis-uibk.github.io/relax/api/local/uibk/local/0?query=amh2YmtqYmRoamtmYmprYWpobGJrdg==');
+  //await page.goto('https://dbis-uibk.github.io/relax/api/local/uibk/local/0?query=UiBqb2luIFMgam9pbiBU');
+  //teste com query inválida mas codificada corretamente
+  await page.goto('https://dbis-uibk.github.io/relax/api/local/uibk/local/0?query=amh2YmtqYmRoamtmYmprYWpobGJrdg==');
   const html = await page.evaluate(() => document.documentElement.outerHTML);
   await browser.close();
   return html;
@@ -32,7 +33,7 @@ getAPIData().then((html) => {
       if (html.search('true')!=(-1)){
         console.log('1');
       }
-      else if(html.indexOf('false')!=(-1)){
+      else if(html.search('false')!=(-1)){
         console.log('0');
       }
     }
