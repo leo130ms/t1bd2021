@@ -9,8 +9,7 @@ const puppeteer = require('puppeteer');
 let getAPIData = async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto('https://dbis-uibk.github.io/relax/api/local/uibk/local/0?query=UiBqb2luIFMgam9pbiBU');
-  //await page.goto('https://dbis-uibk.github.io/relax/api/local/uibk/local/0?query=amh2YmtqYmRoamtmYmprYWpobGJrdg==');
+  await page.goto('https://dbis-uibk.github.io/relax/api/local/uibk/local/0?query=amh2YmtqYmRoamtmYmprYWpobGJrdg==');
   const html = await page.evaluate(() => document.documentElement.outerHTML);
   await browser.close();
   return html;
@@ -27,7 +26,7 @@ getAPIData().then((html) => {
       console.log('Error');
     }
     */
-    let verificarConsulta = true; // alterar para forma de chamada
+    let verificarConsulta = true; // alterar para chamada
     if(verificarConsulta){
       if (html.search('true')!=(-1)){
         console.log('1');
